@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: hcl
+  datasource:
+    url: jdbc:postgresql://localhost:5432/hcl
+    username: postgres
+    password: postgres
+  jpa:
+    show-sql: true
+
+server:
+  servlet:
+    context-path: /${spring.application.name}
