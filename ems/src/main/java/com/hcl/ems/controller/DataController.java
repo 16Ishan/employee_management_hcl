@@ -18,56 +18,15 @@ import java.util.List;
 public class DataController
 {
     @Autowired
-    private DataService loadDataService;
+    private DataService dataService;
+
     @PostMapping(value = "/load", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
     public ResponseEntity<String> loadData(@ModelAttribute DataRequest request)
     {
         try
         {
-            return new ResponseEntity<>(loadDataService.loadData(request.getMonth(),
+            return new ResponseEntity<>(dataService.loadData(request.getMonth(),
                     request.getFile()), HttpStatus.OK);
-        }
-        catch (Exception e)
-        {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    @PostMapping(value = "/deleteColumns", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
-    public ResponseEntity<String> deleteColumns(@ModelAttribute DataRequest request)
-    {
-        try
-        {
-            return new ResponseEntity<>(loadDataService.deleteColumnsFromMultipleSheets(request.getStartDate(),
-                    request.getEndDate(), request.getFile()), HttpStatus.OK);
-        }
-        catch (Exception e)
-        {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    @PostMapping(value = "/removeMergedCells", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
-    public ResponseEntity<String> removeMergedCells(@ModelAttribute DataRequest request)
-    {
-        try
-        {
-            return new ResponseEntity<>(loadDataService.removeMergedCells(request.getStartDate(),
-                    request.getEndDate(), request.getFile()), HttpStatus.OK);
-        }
-        catch (Exception e)
-        {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    @PostMapping(value = "/addEps", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
-    public ResponseEntity<String> addEps(@ModelAttribute DataRequest request)
-    {
-        try
-        {
-            return new ResponseEntity<>(loadDataService.addEps(request.getStartDate(),
-                    request.getEndDate(), request.getFile()), HttpStatus.OK);
         }
         catch (Exception e)
         {
@@ -80,7 +39,7 @@ public class DataController
     {
         try
         {
-            return new ResponseEntity<>(loadDataService.loadBulkData(request.getStartDate(),
+            return new ResponseEntity<>(dataService.loadBulkData(request.getStartDate(),
                     request.getEndDate(), request.getFile()), HttpStatus.OK);
         }
         catch (Exception e)
@@ -94,8 +53,8 @@ public class DataController
     {
         try
         {
-            return new ResponseEntity<>(loadDataService.verifyData(request.getMonth(),
-                    request.getFile(), new EpfDto()), HttpStatus.OK);
+            return new ResponseEntity<>(dataService.verifyData(request.getMonth(),
+                    request.getFile()), HttpStatus.OK);
         }
         catch (Exception e)
         {
