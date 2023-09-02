@@ -33,6 +33,48 @@ public class DataController
         }
     }
 
+    @PostMapping(value = "/deleteColumns", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+    public ResponseEntity<String> deleteColumns(@ModelAttribute DataRequest request)
+    {
+        try
+        {
+            return new ResponseEntity<>(loadDataService.deleteColumnsFromMultipleSheets(request.getStartDate(),
+                    request.getEndDate(), request.getFile()), HttpStatus.OK);
+        }
+        catch (Exception e)
+        {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PostMapping(value = "/removeMergedCells", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+    public ResponseEntity<String> removeMergedCells(@ModelAttribute DataRequest request)
+    {
+        try
+        {
+            return new ResponseEntity<>(loadDataService.removeMergedCells(request.getStartDate(),
+                    request.getEndDate(), request.getFile()), HttpStatus.OK);
+        }
+        catch (Exception e)
+        {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PostMapping(value = "/addEps", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+    public ResponseEntity<String> addEps(@ModelAttribute DataRequest request)
+    {
+        try
+        {
+            return new ResponseEntity<>(loadDataService.addEps(request.getStartDate(),
+                    request.getEndDate(), request.getFile()), HttpStatus.OK);
+        }
+        catch (Exception e)
+        {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @PostMapping(value = "/loadBulkData", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
     public ResponseEntity<String> loadBulkData(@ModelAttribute DataRequest request)
     {
