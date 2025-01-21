@@ -14,7 +14,7 @@ public class CellDto
     private String memberId;
     private String name;
     private String category;
-    private Long staffNo;
+    private String staffNo;
     private Double basic;
     private Double pp;
     private Double daVda;
@@ -24,11 +24,9 @@ public class CellDto
     private Double cpfArrears;
     private Double epsArrears;
     private Double totalSalary;
-    private Double cpf;
-    private Double cpfArrearsDed;
-    private Double totalCpf;
-    private Double eps;
-    private Double epsArrearsDed;
-    private Double totalEps;
-    private String remark;
+    private Long epsDeposited;
+    private Long epsOnTotalWage;
+    private Long additionalContribution;
+    private Long epsDue;
+    private Double rate;
 }

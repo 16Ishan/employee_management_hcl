@@ -80,8 +80,8 @@ public class DataValidator
         }
     }
 
-    public void verifyCpfArrEpsArrTotalSalCpfCpfArrDedTotalCpf(Epf epf, Epf epfMismatch,
-                                                                CellDto cellDto, AtomicBoolean mismatch)
+    public void verifyCpfArrEpsArrTotalSalMonth(Epf epf, Epf epfMismatch,
+                                                CellDto cellDto, AtomicBoolean mismatch, String month)
     {
         if(!Objects.equals(epf.getCpfArrears(), cellDto.getCpfArrears()))
         {
@@ -98,50 +98,35 @@ public class DataValidator
             mismatch.set(true);
             epfMismatch.setTotalSalary(cellDto.getTotalSalary());
         }
-        if(!Objects.equals(epf.getCpf(), cellDto.getCpf()))
-        {
-            mismatch.set(true);
-            epfMismatch.setCpf(cellDto.getCpf());
-        }
-        if(!Objects.equals(epf.getCpfArrearsDed(), cellDto.getCpfArrearsDed()))
-        {
-            mismatch.set(true);
-            epfMismatch.setCpfArrearsDed(cellDto.getCpfArrearsDed());
-        }
-        if(!Objects.equals(epf.getTotalCpf(), cellDto.getTotalCpf()))
-        {
-            mismatch.set(true);
-            epfMismatch.setTotalCpf(cellDto.getTotalCpf());
-        }
-    }
-
-    public void verifyEpsEpsArrDedTotalEpsRemarkMonth(Epf epf, Epf epfMismatch, CellDto cellDto,
-                                                       AtomicBoolean mismatch, String month)
-    {
-        if(!Objects.equals(epf.getEps(), cellDto.getEps()))
-        {
-            mismatch.set(true);
-            epfMismatch.setEps(cellDto.getEps());
-        }
-        if(!Objects.equals(epf.getEpsArrearsDed(), cellDto.getEpsArrearsDed()))
-        {
-            mismatch.set(true);
-            epfMismatch.setEpsArrearsDed(cellDto.getEpsArrearsDed());
-        }
-        if(!Objects.equals(epf.getTotalEps(), cellDto.getTotalEps()))
-        {
-            mismatch.set(true);
-            epfMismatch.setTotalEps(cellDto.getTotalEps());
-        }
-        if(!epf.getRemark().equals(cellDto.getRemark()))
-        {
-            mismatch.set(true);
-            epfMismatch.setRemark(cellDto.getRemark());
-        }
         if(!epf.getMonthYear().equals(month))
         {
             mismatch.set(true);
             epfMismatch.setMonthYear(month);
+        }
+    }
+
+    public void verifyEpsDepEpsTotWageAddContEpsDue(Epf epf, Epf epfMismatch,
+                                                CellDto cellDto, AtomicBoolean mismatch)
+    {
+        if(!Objects.equals(epf.getEpsDeposited(), cellDto.getEpsDeposited()))
+        {
+            mismatch.set(true);
+            epfMismatch.setEpsDeposited(cellDto.getEpsDeposited());
+        }
+        if(!Objects.equals(epf.getEpsOnTotalWage(), cellDto.getEpsOnTotalWage()))
+        {
+            mismatch.set(true);
+            epfMismatch.setEpsOnTotalWage(cellDto.getEpsOnTotalWage());
+        }
+        if(!Objects.equals(epf.getAdditionalContribution(), cellDto.getAdditionalContribution()))
+        {
+            mismatch.set(true);
+            epfMismatch.setAdditionalContribution(cellDto.getAdditionalContribution());
+        }
+        if(!Objects.equals(epf.getEpsDue(), cellDto.getEpsDue()))
+        {
+            mismatch.set(true);
+            epfMismatch.setEpsDue(cellDto.getEpsDue());
         }
     }
 }

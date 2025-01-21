@@ -1,7 +1,6 @@
 package com.hcl.ems.controller;
 
 import com.hcl.ems.dto.DataRequest;
-import com.hcl.ems.dto.EpfDto;
 import com.hcl.ems.model.Epf;
 import com.hcl.ems.services.DataService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +26,32 @@ public class DataController
         {
             return new ResponseEntity<>(dataService.loadData(request.getMonth(),
                     request.getFile()), HttpStatus.OK);
+        }
+        catch (Exception e)
+        {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    @PostMapping(value = "/special", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+    public ResponseEntity<String> special(@ModelAttribute DataRequest request)
+    {
+        try
+        {
+            return new ResponseEntity<>(dataService.special(request.getMonth(),
+                    request.getFile(), request.getFile1()), HttpStatus.OK);
+        }
+        catch (Exception e)
+        {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping(value = "/rate")
+    public ResponseEntity<String> getRatePercentage(@RequestParam String monthYear)
+    {
+        try
+        {
+            return new ResponseEntity<>(dataService.getRatePercentage(monthYear), HttpStatus.OK);
         }
         catch (Exception e)
         {
@@ -59,6 +84,34 @@ public class DataController
         catch (Exception e)
         {
             return new ResponseEntity<>(new ArrayList<>(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PostMapping(value = "/createTextFiles", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+    public ResponseEntity<String> createTextFiles(@ModelAttribute DataRequest request)
+    {
+        try
+        {
+            return new ResponseEntity<>(dataService.createTextFiles(request.getFile()), HttpStatus.OK);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            return new ResponseEntity<>("", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PostMapping(value = "/createExcelFile", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+    public ResponseEntity<String> createExcelFile(@ModelAttribute DataRequest request)
+    {
+        try
+        {
+            return new ResponseEntity<>(dataService.createExcelFile(request.getFile()), HttpStatus.OK);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            return new ResponseEntity<>("", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

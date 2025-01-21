@@ -37,7 +37,7 @@ public class Epf
     private String category;
 
     @Column(name = "staff_no")
-    private Long staffNo;
+    private String staffNo;
 
     @Column(name = "basic")
     private Double basic;
@@ -66,27 +66,24 @@ public class Epf
     @Column(name = "total_salary")
     private Double totalSalary;
 
-    @Column(name = "cpf")
-    private Double cpf;
-
-    @Column(name = "cpf_arrear_ded")
-    private Double cpfArrearsDed;
-
-    @Column(name = "total_cpf")
-    private Double totalCpf;
-
-    @Column(name = "eps")
-    private Double eps;
-
-    @Column(name = "eps_arrear_ded")
-    private Double epsArrearsDed;
-
-    @Column(name = "total_eps")
-    private Double totalEps;
-
-    @Column(name = "remark")
-    private String remark;
-
     @Column(name = "month_year")
     private String monthYear;
+
+    @Column(name = "eps_deposited")
+    private Long epsDeposited;
+
+    @Column(name = "eps_on_total_wage")
+    private Long epsOnTotalWage;
+
+    @Column(name = "additional_contribution")
+    private Long additionalContribution;
+
+    @Column(name = "eps_due")
+    private Long epsDue;
+
+    @Column(name = "rate")
+    private double rate;
+
+    @Column(name = "final_due")
+    private Long finalDue;
 }
